@@ -17,8 +17,9 @@ def test_get_twitter_trends():
     for t in trends[0:10]:
         print(f"name: {t['name']} | url: {t['url']}")
 
+
 def test_get_wikipedia_article():
-    """Receive """
+    """Receive a random wiki article"""
     article = get_wikipedia_article()
     for k, v in article.items():
         print(f"{k}: {v}")

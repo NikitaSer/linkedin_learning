@@ -4,6 +4,7 @@ import requests
 import datetime
 import traceback
 import tweepy
+import config
 
 
 def get_random_quote(quotes_file="quotes.csv"):
@@ -26,7 +27,7 @@ def get_random_quote(quotes_file="quotes.csv"):
 
 def get_weather_forecast(lat=49.84, lon=24.02):
     try:
-        api_key = "6724e513aa3fd78887611d6fea9fb513"
+        api_key = config.WEATHER_API_KEY
         url = f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={api_key}&units=metric"
         r = requests.get(url=url)
         data = r.json()
@@ -52,8 +53,8 @@ def get_weather_forecast(lat=49.84, lon=24.02):
 
 def get_twitter_trends(woeid=23424976):
     try:
-        api_key = "QMrTqU2ucXea6p2QcYWXvK1q2"
-        api_secret_key = "B9WHvFCFHjh1Stly8yirR9Nuooe2moep651Xd66PUrCLIppvQu"
+        api_key = config.TWITTER_API_KEY
+        api_secret_key = config.TWITTER_API_SECRET_KEY
         auth = tweepy.AppAuthHandler(api_key, api_secret_key)
         return tweepy.API(auth).get_place_trends(woeid)[0]["trends"]
     except Exception as e:
