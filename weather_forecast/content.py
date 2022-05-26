@@ -7,7 +7,7 @@ import tweepy
 import config
 
 
-def get_random_quote(quotes_file="quotes.csv"):
+def get_random_quote(quotes_file=config.QUOTES_FILE):
     try:
         with open(quotes_file) as csv_file:
             quotes = [

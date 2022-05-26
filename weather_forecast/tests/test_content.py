@@ -1,6 +1,9 @@
 """Tests for content module"""
-from content import get_weather_forecast, get_twitter_trends, get_wikipedia_article
+from content import get_random_quote, get_weather_forecast, get_twitter_trends, get_wikipedia_article
 
+def test_get_random_quote():
+    """Get random quote"""
+    print(get_random_quote())
 
 def test_get_weather_forecast():
     """Check the forecast contains periods"""
