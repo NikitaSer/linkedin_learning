@@ -1,5 +1,9 @@
 import content
 import datetime
+import config
+import smtplib
+import ssl
+from email.message import EmailMessage
 
 
 class DailyDigestEmail:
@@ -11,8 +15,28 @@ class DailyDigestEmail:
             "wikipedia": {"include": True, "content": content.get_wikipedia_article()},
         }
 
+        self.recipients_list = [config.EMAIL_USER]
+        self.sender_credentials = {
+            "email": config.EMAIL_USER,
+            "password": config.EMAIL_PASS,
+        }
+
     def send_email(self):
-        pass
+        msg = EmailMessage()
+        msg["Subject"] = f'Daily Digest - {datetime.date.today().strftime("%d %b %Y")}'
+        msg["From"] = self.sender_credentials["email"]
+        msg["To"] = self.recipients_list
+
+        msg_body = self.format_message()
+        msg.set_content(msg_body["text"])
+        msg.add_alternative(msg_body["html"], subtype="html")
+
+        contex = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=contex) as server:
+            server.login(
+                self.sender_credentials["email"], self.sender_credentials["password"]
+            )
+            server.send_message(msg)
 
     def format_message(self):
         text = f'*~*~*~* Daily Digest - {datetime.date.today().strftime("%d %b %Y")} *~*~*~*\n\n'
@@ -24,7 +48,7 @@ class DailyDigestEmail:
         if self.content["weather"]["include"] and self.content["weather"]["content"]:
             text += "*~*~*~* Weather forecast *~*~*~*\n\n"
             for forecast in self.content["weather"]["content"]["periods"]:
-                text += f"date={forecast['timestamp']}| t={forecast['temp']} C\N{DEGREE SIGN}| weather='{forecast['description']}'"
+                text += f"date={forecast['timestamp']}| t={forecast['temp']}\u00b0С| weather='{forecast['description']}'"
             text += "\n"
 
         if self.content["twitter"]["include"] and self.content["twitter"]["content"]:
@@ -65,14 +89,13 @@ class DailyDigestEmail:
                         <img src="{forecast['icon']}">
                     </td>
                     <td>
-                        {forecast['temp']} &#8451 | '{forecast['description']}
+                        {forecast['temp']}\u00b0С | '{forecast['description']}
                     </td>
                 </tr>
                 """
             html += """
             </table>
             """
-
 
         if self.content["twitter"]["include"] and self.content["twitter"]["content"]:
             html += f"""
@@ -103,3 +126,7 @@ class DailyDigestEmail:
 
         return {"text": text, "html": html}
 
+
+if __name__ == "__main__":
+    d = DailyDigestEmail()
+    d.send_email()
