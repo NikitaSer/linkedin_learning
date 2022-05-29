@@ -1,5 +1,5 @@
 """Tests for content module"""
-from content import (
+from weather_forecast.content import (
     get_random_quote,
     get_weather_forecast,
     get_twitter_trends,

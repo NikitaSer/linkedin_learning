@@ -4,7 +4,7 @@ import requests
 import datetime
 import traceback
 import tweepy
-import config
+import weather_forecast.config as config
 
 
 def get_random_quote(quotes_file=config.QUOTES_FILE):

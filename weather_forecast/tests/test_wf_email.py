@@ -1,4 +1,4 @@
-from wf_email import DailyDigestEmail
+from weather_forecast.wf_email import DailyDigestEmail
 
 
 def test_create_email_template_html():

@@ -1,6 +1,6 @@
-import content
+import weather_forecast.content as content
 import datetime
-import config
+import weather_forecast.config as config
 import smtplib
 import ssl
 from email.message import EmailMessage
