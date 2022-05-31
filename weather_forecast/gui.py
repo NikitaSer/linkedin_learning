@@ -1,3 +1,7 @@
+import json
+import traceback
+
+import config
 from tkinter import *
 from tkinter import ttk
 from wf_email import DailyDigestEmail
@@ -60,24 +64,28 @@ class DailyDigestGUI:
         self.__build_gui_controls(controls_frame)
 
         self.__email = DailyDigestEmail()
-
-        self.__add_recipient_var.set("")
-        self.__recipient_list_var.set(self.__email.recipients_list)
-
-        self.__hour_var.set("10")
-        self.__minute_var.set("05")
-
-        self.__quote_var.set(self.__email.content["quote"]["include"])
-        self.__weather_var.set(self.__email.content["weather"]["include"])
-        self.__twitter_var.set(self.__email.content["twitter"]["include"])
-        self.__wikipedia_var.set(self.__email.content["wikipedia"]["include"])
-
-        self.__sender_email_var.set(self.__email.sender_credentials["email"])
-        self.__sender_password_var.set(self.__email.sender_credentials["password"])
-
         self.__scheduler = DailyDigestSheduler()
         self.__scheduler.start()
         self.__root.protocol("WM_DELETE_WINDOW", self.__shutdown)
+
+        try:
+            self.__load_config()
+        except Exception as e:
+            print(f"Exception: {e}\ntraceback: {traceback.print_exc()}")
+
+            self.__add_recipient_var.set("")
+            self.__recipient_list_var.set(self.__email.recipients_list)
+
+            self.__hour_var.set("10")
+            self.__minute_var.set("05")
+
+            self.__quote_var.set(self.__email.content["quote"]["include"])
+            self.__weather_var.set(self.__email.content["weather"]["include"])
+            self.__twitter_var.set(self.__email.content["twitter"]["include"])
+            self.__wikipedia_var.set(self.__email.content["wikipedia"]["include"])
+
+            self.__sender_email_var.set(self.__email.sender_credentials["email"])
+            self.__sender_password_var.set(self.__email.sender_credentials["password"])
 
     def __build_gui_recipients(self, master, add_recipient_var, recipient_list_var):
         header = ttk.Label(master, text="Recipients:", style="Header.TLabel")
@@ -247,9 +255,40 @@ class DailyDigestGUI:
         print("Shutting down the scheduler...")
         self.__scheduler.stop()
         self.__scheduler.join()
+        try:
+            self.__save_config()
+        except Exception as e:
+            print(f"Exception: {e}\ntraceback: {traceback.print_exc()}")
         self.__root.destroy()
 
-    def __save_config(self, file=):
+    def __save_config(self, file_path=config.WF_CONFIG):
+        config = {'add_recipient': self.__add_recipient_var.get(),
+                  'recipient_list': self.__recipient_list_var.get(),
+                  'hour': self.__hour_var.get(),
+                  'minute': self.__minute_var.get(),
+                  'quote': self.__quote_var.get(),
+                  'weather': self.__weather_var.get(),
+                  'twitter': self.__twitter_var.get(),
+                  'wikipedia': self.__wikipedia_var.get(),
+                  'sender_email': self.__sender_email_var.get(),
+                  'sender_password': self.__sender_password_var.get()}
+        with open(file_path, "w") as file:
+            json.dump(config, file, indent=4)
+
+    def __load_config(self, file_path=config.WF_CONFIG):
+        with open(file_path) as file:
+            config = json.load(file)
+            self.__add_recipient_var.set(config['add_recipient'])
+            self.__recipient_list_var.set(config['recipient_list'])
+            self.__hour_var.set(config['hour'])
+            self.__minute_var.set(config['minute'])
+            self.__quote_var.set(config['quote'])
+            self.__weather_var.set(config['weather'])
+            self.__twitter_var.set(config['twitter'])
+            self.__wikipedia_var.set(config['wikipedia'])
+            self.__sender_email_var.set(config['sender_email'])
+            self.__sender_password_var.set(config['sender_password'])
+        self.__update_settings()
 
 
 if __name__ == "__main__":

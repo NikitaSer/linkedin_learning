@@ -9,3 +9,4 @@ EMAIL_USER = os.environ.get("EMAIL_USER")
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 QUOTES_FILE = os.path.join(ROOT_DIR, "quotes.csv")
+WF_CONFIG = os.path.join(ROOT_DIR, "wf_config.json")
