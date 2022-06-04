@@ -1,3 +1,18 @@
+"""
+Reduce the complexity of building and eleborate objects through a devide and conquer strategy.
+
+Problem - building object using excessive number of constructors.
+
+Solution:
+Director - building a product
+Abstract builder - provide all the necessary interfaces required in building an object
+Concrete builder - inherits the Abstract builder and implements the details of the interfaces
+for the specific type of product.
+Product - the object is being build.
+
+The Builder does not rely on polymorphism, unlike Factory and Abstract Factory.
+"""
+
 class Director:
     """Director"""
 

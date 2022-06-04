@@ -1,3 +1,13 @@
+"""
+Useful when instantiating many identical objects individually is expensive.
+Clones objects according to a prototypical instance.
+
+Solution:
+Creating a prototypical instance first and then clone it whenever you need a replica.
+
+Abstract factory is related to the Prototype pattern.
+"""
+
 import copy
 
 

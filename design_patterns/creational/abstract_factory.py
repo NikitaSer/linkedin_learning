@@ -1,3 +1,13 @@
+"""
+Useful when the user expects to receive a family of related objects at a given time
+but does not have to know which family it is until runtime.
+
+Solution:
+Abstract factory
+Concrete factory
+Concrete product
+"""
+
 class PetStore:
     """PetStore houses our Abstract Factory"""
 

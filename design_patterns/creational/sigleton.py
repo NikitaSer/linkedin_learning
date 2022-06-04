@@ -1,3 +1,10 @@
+"""
+Useful when you want to allow only one object to be created from a class.
+
+Problem - global variable in an OOP way (Borg in python)
+"""
+
+
 class Borg:
     """The Borg design pattern"""
 
