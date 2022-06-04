@@ -1,5 +1,6 @@
 class Director:
     """Director"""
+
     def __init__(self, builder):
         self._builder = builder
 
@@ -15,6 +16,7 @@ class Director:
 
 class Builder:
     """Abstract builder"""
+
     def __init__(self):
         self.car = None
 
@@ -24,6 +26,7 @@ class Builder:
 
 class SkyLarkBuilder(Builder):
     """Concrete builder, provide tools and parts to work on the parts"""
+
     def add_model(self):
         self.car.model = "Skylark"
 
@@ -36,6 +39,7 @@ class SkyLarkBuilder(Builder):
 
 class Car:
     """Product"""
+
     def __init__(self):
         self.model = None
         self.tires = None

@@ -1,5 +1,6 @@
 class Borg:
     """The Borg design pattern"""
+
     _shared_data = {}
 
     def __init__(self):

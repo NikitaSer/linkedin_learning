@@ -1,5 +1,6 @@
 class PetStore:
     """PetStore houses our Abstract Factory"""
+
     def __init__(self, pet_factory=None):
         """pet_factory is our Abstract Factory"""
         self._pet_factory = pet_factory
@@ -15,6 +16,7 @@ class PetStore:
 
 class DogFactory:
     """Concrete factory"""
+
     def get_pet(self):
         """Returns a Dog object"""
         return Dog()
@@ -23,8 +25,10 @@ class DogFactory:
         """Returns a Dog Food object"""
         return "Dog food"
 
+
 class Dog:
     """A simple dog class"""
+
     def __init__(self, name="Default dog name"):
         self._name = name
 

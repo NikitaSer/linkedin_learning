@@ -1,5 +1,17 @@
+"""
+Converts the interface of a class into another one a client is expecting
+
+Problem - incompatible interfaces between a client and a server
+
+Solution - translate the method names between the client and the server code.
+
+Bridge and Decorator patterns ar related to the Adapter pattern.
+"""
+
+
 class Korean:
     """Korean speaker"""
+
     def __init__(self):
         self.name = "Korean"
 
@@ -9,6 +21,7 @@ class Korean:
 
 class British:
     """English speaker"""
+
     def __init__(self):
         self.name = "British"
 
@@ -19,7 +32,7 @@ class British:
 class Adapter:
     """This changes the generic method name to individualized method names"""
 
-    def  __init__(self, object, **adapted_method):
+    def __init__(self, object, **adapted_method):
         """Change the name of the method"""
         self._object = object
 
@@ -44,4 +57,3 @@ objects.append(Adapter(b, speak=b.speak_english))
 
 for obj in objects:
     print(f"{obj.name} says {obj.speak()}")
-

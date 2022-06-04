@@ -1,8 +1,21 @@
+"""
+Useful when creating a highly resource-intensive object
+
+Problem - postpone object creation unless absolutely necessary
+(due to high-resource requirement of the object we are creating)
+
+Solution - create a proxy which responsible for crating the resource-intensive objects.
+Clients interacting with a proxy.
+
+Adapter and Decorator patters are related to the Proxy pattern.
+"""
+
 import time
 
 
 class Producer:
     """Define the 'resource-intensive' object to instantiate!"""
+
     def produce(self):
         print("Producer is working")
 
@@ -12,6 +25,7 @@ class Producer:
 
 class Proxy:
     """Define the 'relatively less resource-intensive' proxy to instantiate as a middleman"""
+
     def __init__(self):
         self.occupied = False
         self.producer = None

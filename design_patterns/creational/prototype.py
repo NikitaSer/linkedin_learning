@@ -22,6 +22,7 @@ class Prototype:
 
 class Car:
     """Product"""
+
     def __init__(self):
         self.model = "Swift"
         self.tires = 17
@@ -29,6 +30,7 @@ class Car:
 
     def __str__(self):
         return f"{self.model} | {self.tires} | {self.engine}"
+
 
 car = Car()
 prototype = Prototype()

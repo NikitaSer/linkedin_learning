@@ -262,32 +262,34 @@ class DailyDigestGUI:
         self.__root.destroy()
 
     def __save_config(self, file_path=config.WF_CONFIG):
-        config = {'add_recipient': self.__add_recipient_var.get(),
-                  'recipient_list': self.__recipient_list_var.get(),
-                  'hour': self.__hour_var.get(),
-                  'minute': self.__minute_var.get(),
-                  'quote': self.__quote_var.get(),
-                  'weather': self.__weather_var.get(),
-                  'twitter': self.__twitter_var.get(),
-                  'wikipedia': self.__wikipedia_var.get(),
-                  'sender_email': self.__sender_email_var.get(),
-                  'sender_password': self.__sender_password_var.get()}
+        config = {
+            "add_recipient": self.__add_recipient_var.get(),
+            "recipient_list": self.__recipient_list_var.get(),
+            "hour": self.__hour_var.get(),
+            "minute": self.__minute_var.get(),
+            "quote": self.__quote_var.get(),
+            "weather": self.__weather_var.get(),
+            "twitter": self.__twitter_var.get(),
+            "wikipedia": self.__wikipedia_var.get(),
+            "sender_email": self.__sender_email_var.get(),
+            "sender_password": self.__sender_password_var.get(),
+        }
         with open(file_path, "w") as file:
             json.dump(config, file, indent=4)
 
     def __load_config(self, file_path=config.WF_CONFIG):
         with open(file_path) as file:
             config = json.load(file)
-            self.__add_recipient_var.set(config['add_recipient'])
-            self.__recipient_list_var.set(config['recipient_list'])
-            self.__hour_var.set(config['hour'])
-            self.__minute_var.set(config['minute'])
-            self.__quote_var.set(config['quote'])
-            self.__weather_var.set(config['weather'])
-            self.__twitter_var.set(config['twitter'])
-            self.__wikipedia_var.set(config['wikipedia'])
-            self.__sender_email_var.set(config['sender_email'])
-            self.__sender_password_var.set(config['sender_password'])
+            self.__add_recipient_var.set(config["add_recipient"])
+            self.__recipient_list_var.set(config["recipient_list"])
+            self.__hour_var.set(config["hour"])
+            self.__minute_var.set(config["minute"])
+            self.__quote_var.set(config["quote"])
+            self.__weather_var.set(config["weather"])
+            self.__twitter_var.set(config["twitter"])
+            self.__wikipedia_var.set(config["wikipedia"])
+            self.__sender_email_var.set(config["sender_email"])
+            self.__sender_password_var.set(config["sender_password"])
         self.__update_settings()
 
 

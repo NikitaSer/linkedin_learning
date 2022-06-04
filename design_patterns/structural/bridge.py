@@ -1,17 +1,33 @@
+"""
+Helps untangle unnecessarily complicated class hierarchy
+especially when implementation-specific classes are mixed with
+implementation-independent classes
+
+Problem - Unrelated/parallel/orthogonal abstractions:
+    One - implementation specific
+    Other - implementation independent
+
+Solution - separate the abstraction into two different class hierarchies
+"""
+
+
 class DrawingAPIOne(object):
     """Implementation specific abstraction: concrete class one"""
+
     def draw_circle(self, x, y, radius):
         print(f"API_1 draw_circle at {x},{y} with r={radius}")
 
 
 class DrawingAPITwo(object):
     """Implementation specific abstraction: concrete class two"""
+
     def draw_circle(self, x, y, radius):
         print(f"API_2 draw_circle at {x},{y} with r={radius}")
 
 
 class Circle(object):
     """Implementation-independent abstraction: for example, there could be a rectangle class!"""
+
     def __init__(self, x, y, radius, drawing_api):
         """Initialize the necessary attributes"""
         self._x = x

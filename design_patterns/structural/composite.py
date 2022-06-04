@@ -1,3 +1,17 @@
+"""
+Maintains a tree data structure to represent part-whole relationships
+
+Problem - Recursive tree data structure (some elements have sub elements)
+Menu > submenu > sub-submenu > ...
+
+Solution:
+Component - abstract class
+Child - concrete class, inherits from the Component
+Composite - concrete class, inherits from the Component.
+It maintains Child objects by adding and removing them to and from a tree data structure
+"""
+
+
 class Component(object):
     """Abstract class"""
 
@@ -10,6 +24,7 @@ class Component(object):
 
 class Child(Component):
     """Concrete class"""
+
     def __init__(self, *args, **kwargs):
         Component.__init__(self, *args, **kwargs)
 
@@ -23,6 +38,7 @@ class Child(Component):
 
 class Composite(Component):
     """Concrete class that maintains the tree recursive structure"""
+
     def __init__(self, *args, **kwargs):
         Component.__init__(self, *args, **kwargs)
         self.name = args[0]
@@ -42,7 +58,7 @@ class Composite(Component):
         # Print the name of the composite object
         print(self.name)
 
-        #Iterate through the child objects and invoke their component function, printing their names
+        # Iterate through the child objects and invoke their component function, printing their names
         for i in self.children:
             i.component_function()
 
@@ -72,5 +88,3 @@ top.append_child(sub1)
 top.append_child(sub2)
 
 top.component_function()
-
-
