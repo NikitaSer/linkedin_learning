@@ -5,6 +5,7 @@ Problem - uncertainties in types of objects which you will using eventually in t
 Decisions to be made at runtime regarding what classes to use.
 """
 
+
 class Dog:
     """A simple dog class"""
 
