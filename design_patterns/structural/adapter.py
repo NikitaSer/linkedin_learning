@@ -23,8 +23,8 @@ class Adapter:
         """Change the name of the method"""
         self._object = object
 
-        # Add a new dictionary item that establishes the mapping between the generic method name: speak() and the concrete method
-        # For example, speak() will be translated to speak_korean() if the mapping says so
+        # Add a new dictionary item that establishes the mapping between the generic method name: speak() and the
+        # concrete method For example, speak() will be translated to speak_korean() if the mapping says so
         self.__dict__.update(adapted_method)
 
     def __getattr__(self, attr):
