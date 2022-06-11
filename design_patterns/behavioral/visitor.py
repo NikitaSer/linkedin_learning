@@ -6,6 +6,7 @@ Problem - add new operations dynamically to the existing classes with minimal ch
 Solution - new operations to be performed on the various elements of an existing class hierarchy.
 """
 
+
 class House(object):
     """The class being visited"""
     def accept(self, visitor):
@@ -44,13 +45,14 @@ class Electircian(Visitor):
     def visit(self, house):
         house.work_on_electricity(self)
 
+
 hv = HvacSpecialist()
 e = Electircian()
 
 house = House()
 
-#Let the house accept the HVAC specialist and work on the house by invoking the visit() method
+# Let the house accept the HVAC specialist and work on the house by invoking the visit() method
 house.accept(hv)
 
-#Let the house accept the electrician and work on the house by invoking the visit() method
+# Let the house accept the electrician and work on the house by invoking the visit() method
 house.accept(e)
