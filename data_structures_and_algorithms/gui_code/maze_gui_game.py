@@ -6,13 +6,7 @@ Robin Andrews - https://compucademy.net/
 import config
 import turtle
 import random
-
-try:
-    import playsound  # Not part of standard Library. Install with `pip install playsound`.
-
-    SOUND = config.SOUND
-except ImportError:
-    SOUND = False
+import playsound
 import search
 import helper_functions as helpers
 import tkinter as tk
@@ -281,7 +275,7 @@ class MazeGUI:
             # Player has found treasure
             self.playing = False
             self.screen.update()  # Show opponent in same cell as treasure
-            if SOUND:
+            if config.SOUND:
                 playsound.playsound("sounds/opponent-wins.mp3", False)
             self.opponent_score += 1
             self.update_score_display()
@@ -321,7 +315,7 @@ class MazeGUI:
                 # Player has found treasure
                 self.playing = False
                 self.screen.update()  # Show player in same cell as treasure
-                if SOUND:
+                if config.SOUND:
                     playsound.playsound("sounds/player-wins.mp3", False)
                 self.player_score += 1
                 self.update_score_display()
