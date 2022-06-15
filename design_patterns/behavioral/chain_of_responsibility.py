@@ -17,6 +17,7 @@ Composite pattern is related to Chain of responsibility
 
 class Handler:
     """Abstract Handler"""
+
     def __init__(self, successor):
         # Define who is the next handler
         self._successor = successor
@@ -28,11 +29,14 @@ class Handler:
             self._successor.handle(request)
 
     def _handle(self, request):
-        raise NotImplementedError("Must provide an implementation of the _handle method")
+        raise NotImplementedError(
+            "Must provide an implementation of the _handle method"
+        )
 
 
 class ConcreteHandler1(Handler):
     """Concrete Handler"""
+
     def _handle(self, request):
         # Provide a condition for handling
         if 0 < request <= 10:

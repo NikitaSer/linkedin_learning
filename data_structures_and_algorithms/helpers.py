@@ -1,11 +1,4 @@
-import read_maze
-
-offsets = {
-    "right": (0, 1),
-    "left": (0, -1),
-    "up": (-1, 0),
-    "down": (1, 0)
-}
+offsets = {"right": (0, 1), "left": (0, -1), "up": (-1, 0), "down": (1, 0)}
 
 
 def is_legal_pos(maze, pos):

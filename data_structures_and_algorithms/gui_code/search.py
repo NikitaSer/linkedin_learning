@@ -80,8 +80,13 @@ def a_star(board, start_pos, goal_pos):
             return full_path
         for direction in ["up", "right", "down", "left"]:
             row_offset, col_offset = config.offsets[direction]
-            neighbour = (current_cell_pos[0] + row_offset, current_cell_pos[1] + col_offset)
-            new_cost = g_values[current_cell_pos] + 1  # Would be edge weight in a weighted graph
+            neighbour = (
+                current_cell_pos[0] + row_offset,
+                current_cell_pos[1] + col_offset,
+            )
+            new_cost = (
+                g_values[current_cell_pos] + 1
+            )  # Would be edge weight in a weighted graph
             if helpers.is_legal_pos(board, neighbour):
                 # Second check only applies to weighted graph.
                 if neighbour not in g_values or new_cost < g_values[neighbour]:

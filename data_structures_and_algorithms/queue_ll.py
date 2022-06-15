@@ -27,7 +27,7 @@ class Queue:
 
     def __str__(self):
         """Return the items of the queue"""
-        return str(self.items)\
+        return str(self.items)
 
 
 if __name__ == "__main__":

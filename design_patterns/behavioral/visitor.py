@@ -9,6 +9,7 @@ Solution - new operations to be performed on the various elements of an existing
 
 class House(object):
     """The class being visited"""
+
     def accept(self, visitor):
         """
         Interface to accept a visitor
@@ -30,18 +31,21 @@ class House(object):
 
 class Visitor(object):
     """Abstract visitor"""
+
     def __str__(self):
         return self.__class__.__name__
 
 
 class HvacSpecialist(Visitor):
     """Concrete visitor: HVAC specialist"""
+
     def visit(self, house):
         house.work_on_hvac(self)
 
 
 class Electircian(Visitor):
     """Concrete visitor: electrician"""
+
     def visit(self, house):
         house.work_on_electricity(self)
 

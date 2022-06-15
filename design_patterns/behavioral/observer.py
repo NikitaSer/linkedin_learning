@@ -12,6 +12,7 @@ Concrete subject classes - inherit from Subject abstract class.
 Singleton is related to the Observer pattern.
 """
 
+
 class Subject(object):
     def __init__(self):
         # This where references to all the observers are being kept
@@ -61,6 +62,7 @@ class TempViewer:
     # when the notify() method in a concrete subject is invoked
     def update(self, subject):
         print(f"Temp Viewer:{subject._name}, has temp:{subject._temp}")
+
 
 c1 = Core("Core_1")
 c2 = Core("Core_2")

@@ -20,7 +20,9 @@ class Strategy:
         if function:
             self.execute = types.MethodType(function, self)
 
-    def execute(self):  # This gets replaced by another version if another strategy is provided.
+    def execute(
+        self,
+    ):  # This gets replaced by another version if another strategy is provided.
         """The default method that prints the name of the strategy being used"""
         print(f"{self.name} is used")
 

@@ -23,7 +23,10 @@ def read_maze(file_name):
         print("There is a problem with the file you have selected.")
         raise SystemExit
 
+
 if __name__ == "__main__":
-    maze = read_maze("C:/Users/mykyta.serhiienko/Desktop/nik/linkedin_learning_courses/linkedin_learning/data_structures_and_algorithms/gui_code/gui_mazes/challenge_maze.txt")
+    maze = read_maze(
+        "C:/Users/mykyta.serhiienko/Desktop/nik/linkedin_learning_courses/linkedin_learning/data_structures_and_algorithms/gui_code/gui_mazes/challenge_maze.txt"
+    )
     for row in maze:
         print(row)
