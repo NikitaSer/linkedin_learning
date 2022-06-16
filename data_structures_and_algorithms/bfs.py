@@ -7,6 +7,7 @@ import read_maze
 import helpers
 from queue_ll import Queue
 
+
 def bfs(maze, start, goal):
     queue = Queue()
     queue.enqueue(start)
