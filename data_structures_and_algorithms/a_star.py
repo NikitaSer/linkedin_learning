@@ -71,3 +71,6 @@ if __name__ == "__main__":
     goal_pos = (3, 3)
     result = a_star(maze, start_pos, goal_pos)
     assert result is None
+
+    # Get path for challenge maze
+    print(a_star(read_maze.read_maze(challenge_maze), (0, 0), (3, 3)))
